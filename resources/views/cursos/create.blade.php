@@ -7,7 +7,7 @@
 @section('contenido')
 
 <h3 class='text-center'>Creación de nuevo curso</h3>
-<form action="/cursos" method="POST">
+<form action="/cursos" method="POST" enctype="multipart/form-data">
     {{-- csrf es una protección contra ataques malintencionados --}}
     @csrf
     <div class="form-group">
@@ -17,6 +17,11 @@
     <div class="form-group">
         <label for="descrip">Ingrese una Descripción</label>
         <input id="descrip" class="form-control" type="text" name="descripcion">
+    </div>
+    <div class="form-group">
+        <label for="imagen">Cargue una imágen para el curso</label>
+        <br>
+        <input id="imagen" type="file" name="imagen">
     </div>
     <button class="btn btn-dark" type="submit">Crear</button>
 </form>
