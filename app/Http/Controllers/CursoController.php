@@ -64,7 +64,8 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        //
+        $cursito = Curso::find($id);
+        return view('cursos.show', compact('cursito'));
     }
 
     /**
@@ -75,7 +76,11 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        //
+        /* Con firstOrFail capturo la excepción y muestro el primer
+        registro encontrado en la tabla de la BD o lanza un error*/
+        $cursito = Curso::where('id',$id)->firstOrFail();
+        // return $cursito;
+        return view('cursos.edit', compact('cursito'));
     }
 
     /**
@@ -87,7 +92,19 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cursito = Curso::find($id);
+        /* Rellenar todos los campos del Curso con la info que viene
+        en la petición o request */
+        // Ésta técnica solo actualizará los textos y números
+        //$cursito->fill($request->all());
+        // Ahora llenamos todos los campos excepto  el campo imagen
+        $cursito->fill($request->except('imagen'));
+        if ($request->hasFile('imagen')){
+            $cursito->imagen = $request->file('imagen')->store('public/cursos');
+        }
+        //return $request;
+        $cursito->save();
+        return 'Curso actualizado correctamente';
     }
 
     /**
@@ -99,5 +116,10 @@ class CursoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function nosotros($id)
+    {
+        return view('cursos.show');
     }
 }

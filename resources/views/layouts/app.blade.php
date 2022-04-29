@@ -5,7 +5,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand">
+            <a href="/cursos" class="navbar-brand">
                 <img src="/logo/AcademiaPro.png" width="30" height="30" alt="">
             </a>
             <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,6 +18,12 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Docentes<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/cursos/create">Crear Curso<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/nosotros">Sobre Nosotros<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>

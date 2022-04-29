@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MiController;
 use App\Http\Controllers\heladeria;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\InfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,5 @@ Route::get('micontrolador/{nombre}', [MiController::class,'saludo']);
 Route::get('heladeria/{helado}', [heladeria::class,'cubierta_helados']);
 
 Route::resource('cursos', CursoController::class);
+
+Route::get('nosotros', [InfoController::class, 'info']);
