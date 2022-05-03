@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Curso;
+use App\Models\Docente;
 
-class CursoController extends Controller
+class DocenteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class CursoController extends Controller
     public function index()
     {
         //Con el método all() traigo toda la información de la tabla como array
-        $cursito = Curso::all();
+        $docente = Docente::all();
         // Compact adjunta la información deseada a la vista para poderla usar en la vista
-        return view('cursos.index', compact('cursito'));
+        return view('docentes.index', compact('docente'));
     }
 
     /**
@@ -27,11 +27,11 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('cursos.create');
+        return view('docentes.create');
     }
 
     /**
-     * Almacena un nuevo registro creado.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -39,21 +39,20 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         //all() me trae toda la informacion almacenada en $request
-        //return $request->all();
-        $cursito = new Curso();
+        $docente = new Docente();
         /* A traves de la instancia llamo al campo nombre de la tabla curso y le signo el valor que viene en el request */
-        $cursito->nombre = $request->input('nombre');
-        $cursito->descripcion = $request->input('descripcion');
+        $docente->nombre = $request->input('nombre');
+        $docente->descripcion = $request->input('descripcion');
 
         // Validamos si viene un archivo desde el campo equis...
         // Luego en el campo imágen almacenamos el nombre del archivo que se va a guardar en storge/app/public e indicamos una subcarpeta de guardado para ser más ordenados
         if ($request->hasFile('imagen')){
-            $cursito->imagen = $request->file('imagen')->store('public/cursos');
+            $docente->imagen = $request->file('imagen')->store('public/docentes');
         }
 
         //Le digo que guarde la informaciín anterior con save()
-        $cursito->save();
-        return 'Curso creado exitosamente';
+        $docente->save();
+        return 'Docente creado exitosamente';
     }
 
     /**
@@ -64,8 +63,8 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        $cursito = Curso::find($id);
-        return view('cursos.show', compact('cursito'));
+        $docente = Docente::find($id);
+        return view('docentes.show', compact('docentes'));
     }
 
     /**
@@ -78,9 +77,8 @@ class CursoController extends Controller
     {
         /* Con firstOrFail capturo la excepción y muestro el primer
         registro encontrado en la tabla de la BD o lanza un error*/
-        $cursito = Curso::where('id',$id)->firstOrFail();
-        // return $cursito;
-        return view('cursos.edit', compact('cursito'));
+        $docente = Docente::where('id',$id)->firstOrFail();
+        return view('docentes.edit', compact('docente'));
     }
 
     /**
@@ -92,19 +90,17 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cursito = Curso::find($id);
+        $docente = Docente::find($id);
         /* Rellenar todos los campos del Curso con la info que viene
         en la petición o request */
         // Ésta técnica solo actualizará los textos y números
-        //$cursito->fill($request->all());
         // Ahora llenamos todos los campos excepto  el campo imagen
-        $cursito->fill($request->except('imagen'));
+        $docente->fill($request->except('imagen'));
         if ($request->hasFile('imagen')){
-            $cursito->imagen = $request->file('imagen')->store('public/cursos');
+            $docente->imagen = $request->file('imagen')->store('public/docentes');
         }
-        //return $request;
-        $cursito->save();
-        return 'Curso actualizado correctamente';
+        $docente->save();
+        return 'Docente actualizado correctamente';
     }
 
     /**
@@ -116,10 +112,5 @@ class CursoController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function nosotros($id)
-    {
-        return view('cursos.show');
     }
 }

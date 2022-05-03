@@ -5,6 +5,7 @@ use App\Http\Controllers\MiController;
 use App\Http\Controllers\heladeria;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\DocenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::get('heladeria/{helado}', [heladeria::class,'cubierta_helados']);
 Route::resource('cursos', CursoController::class);
 
 Route::get('nosotros', [InfoController::class, 'info']);
+
+Route::resource('docentes', DocenteController::class);

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('titulo', 'Listado de Cursos')
+@section('titulo', 'Listado de Docentes')
 
 @section('contenido')
 
     <br>
-    <h3 class="text-center">Aquí encontraras la lista de cursos</h3>
+    <h3 class="text-center">Aquí encontraras la lista de docentes</h3>
         {{-- Con foreach hago el recorrido del array --}}
         <div class="row">
-        @foreach ($cursito as $alias)
+        @foreach ($docente as $alias)
             <div class="col-sm">
                 <br>
                 <div class="card text-center" style="width: 18rem; margin-top:20px">
