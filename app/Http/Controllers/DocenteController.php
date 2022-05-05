@@ -42,12 +42,13 @@ class DocenteController extends Controller
         $docente = new Docente();
         /* A traves de la instancia llamo al campo nombre de la tabla curso y le signo el valor que viene en el request */
         $docente->nombre = $request->input('nombre');
-        $docente->descripcion = $request->input('descripcion');
+        $docente->edad = $request->input('edad');
+        $docente->titulo = $request->input('titulo');
 
         // Validamos si viene un archivo desde el campo equis...
         // Luego en el campo imágen almacenamos el nombre del archivo que se va a guardar en storge/app/public e indicamos una subcarpeta de guardado para ser más ordenados
-        if ($request->hasFile('imagen')){
-            $docente->imagen = $request->file('imagen')->store('public/docentes');
+        if ($request->hasFile('foto_de_perfil')){
+            $docente->foto_de_perfil = $request->file('foto_de_perfil')->store('public/docentes');
         }
 
         //Le digo que guarde la informaciín anterior con save()
@@ -64,7 +65,7 @@ class DocenteController extends Controller
     public function show($id)
     {
         $docente = Docente::find($id);
-        return view('docentes.show', compact('docentes'));
+        return view('docentes.show', compact('docente'));
     }
 
     /**
@@ -95,9 +96,9 @@ class DocenteController extends Controller
         en la petición o request */
         // Ésta técnica solo actualizará los textos y números
         // Ahora llenamos todos los campos excepto  el campo imagen
-        $docente->fill($request->except('imagen'));
-        if ($request->hasFile('imagen')){
-            $docente->imagen = $request->file('imagen')->store('public/docentes');
+        $docente->fill($request->except('foto_de_perfil'));
+        if ($request->hasFile('foto_de_perfil')){
+            $docente->foto_de_perfil = $request->file('foto_de_perfil')->store('public/docentes');
         }
         $docente->save();
         return 'Docente actualizado correctamente';

@@ -4,8 +4,8 @@
 
 @section('contenido')
 
-    <h3>Información sobre la compañia</h3>
+    <h3 class="text-center">Información de la compañia</h3>
     <br>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium enim optio fugiat labore exercitationem ea nostrum natus excepturi explicabo quibusdam. Nostrum beatae, molestiae explicabo distinctio minus animi eos delectus sint.</p>
+    <p class="text-center">Somos una empresa digital mundial, donde ofrecemos todo tipo de cursos, especialmente cursos sobre el Desarrollo de Software.</p>
 
 @endsection

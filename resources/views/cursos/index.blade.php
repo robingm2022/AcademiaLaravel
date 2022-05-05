@@ -4,7 +4,6 @@
 
 @section('contenido')
 
-    <br>
     <h3 class="text-center">Aquí encontraras la lista de cursos</h3>
         {{-- Con foreach hago el recorrido del array --}}
         <div class="row">
