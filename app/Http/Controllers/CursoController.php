@@ -122,7 +122,10 @@ class CursoController extends Controller
         $nombreImagen = str_replace('public/','\storage\\',$urlImagenBD);
         //return $nombreImagen;
         $rutaCompleta = public_path().$nombreImagen;
-        return $rutaCompleta;
+        //return $rutaCompleta;
+        unlink($rutaCompleta);
+        $cursito -> delete();
+        return 'Eliminado Exitosamente';
     }
 
     public function nosotros($id)
