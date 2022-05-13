@@ -10,6 +10,11 @@
     <form action="/cursos" method="POST" enctype="multipart/form-data">
         {{-- csrf es una protección contra ataques malintencionados --}}
         @csrf
+        @if ($errors->any())
+            @foreach ($errors->all() as $alerta)
+                <p>{{$alerta}}</p>
+            @endforeach
+        @endif
         <div class="form-group">
             <label for="nombre">Ingrese nombre del curso</label>
             <input id="nombre" class="form-control" type="text" name="nombre">

@@ -38,6 +38,14 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
+        //implementamos validaciones
+            $validacionDatos = $request->validate([
+            'nombre' => 'required|max:10',
+            'imagen' => 'required|image'
+        ]);
+        if ($request->hasFile('imagen')){
+            $archivo = $request->file('imagen');
+        }
         //all() me trae toda la informacion almacenada en $request
         //return $request->all();
         $cursito = new Curso();
