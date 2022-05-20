@@ -12,7 +12,11 @@
         @csrf
         @if ($errors->any())
             @foreach ($errors->all() as $alerta)
-                <p>{{$alerta}}</p>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <li>{{$alerta}}</li>
+                    </ul>
+                </div>
             @endforeach
         @endif
         <div class="form-group">
